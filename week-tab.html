@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>js动态生成一周日历点击显示相应的tab选项卡</title>
+	<meta charset="utf-8">
+<style>
+
+.appointmentlist-date-box{ margin-bottom:-12px;height:50px; padding-top:20px;}
+.appointmentlist-date-appendjs{
+  position: absolute;
+  left: -14px;
+  height: 50px;
+  border-bottom: 2px solid #48af13;
+  z-index: 999;
+}
+.appointmentlist-date-appendjs span{
+  float: left;
+  width: 88.6px;
+  line-height: 18px;
+  text-align: center;
+  height: 43px;
+  padding-top: 5px;
+  margin: 0 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border: 2px solid #fff;
+  border-bottom: none;
+  color: #999;
+}
+.appointmentlist-date-appendjs p{
+  color: #999;
+}
+.appointmentlist-date-appendjs span.active{
+  border: 2px solid #48af13;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #f5f5f5;  
+  color: #48af13;
+  font-weight: bold;
+  height: 45px;
+  border-bottom: none;
+}
+.appointmentlist-date-appendjs span.active p{
+  color: #48af13;
+}
+.appointmentlist-box-table{display:none;}
+.appointmentlist-page-form{  float: right; margin-right: 20px;}
+.appointmentlist-page-form label{
+  width: 70px;
+  display: inline-block;
+  line-height: 46px;
+}
+.appointmentlist-page-form #hos{  height: 23px;text-indent: 10px;
+  color: #666;}
+.appointmentlist-page-form .doctorBTN{  font-size: 12px;}
+
+.font-style-green{color:#0066cc; font-size:16px; font-weight:bold;}
+
+.WealthPoint_table_doctor{width: 790px; height: 414px; margin-top: 12px; position: relative;}
+.wpTbody_Spdoctor{ color: #299600; font-weight: normal !important;}
+.wpTbody_Adoctor{color: #0064df; text-decoration: underline;}
+.wpTbody_Bodydoctor tr td{ border-bottom: 1px dashed #ddd;}
+body, ul, li, p, h1, h2, dl, dt, dd, font, span {
+    margin: 0px;
+    padding: 0px;
+    color: #666;
+}
+a {
+    color: #666;
+}
+.WealthPoint_table_doctor {
+    width: 790px;
+    height: 414px;
+    margin-top: 12px;
+    position: relative;
+}
+#wpTable {
+    width: 789px;
+    border-spacing: 0px;
+    position: absolute;
+    left: -14px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 38px;
+}
+table {
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+.workbench-box th {
+    font-weight: 500;
+}
+.wpThead tr th {
+    background-color: #F5F5F5;
+    border-top: 1px solid #D7D7D7;
+    border-bottom: 1px solid #D7D7D7;
+}
+.workbench-box .wpTh1_three {
+    width: 150px;
+}
+.wpTh2_three {
+    width: 89px;
+}
+.workbench-box .wpTh3_three {
+    width: 160px;
+}
+.workbench-box .wpTh4_three {
+    width: 200px;
+}
+.workbench-box .wpTh5_three {
+    width: 130px;
+}
+.wpTbody_Bodydoctor tr td {
+    border-bottom: 1px dashed #DDD;
+}
+.workbench-box .wpTbody_Adoctor {
+    color: #5E99D3;text-decoration: none;
+}
+</style>
+
+</head>
+<body>
+
+
+<div class="WealthPoint workbench-box appointmentlist-box">	
+	<div class="appointmentlist-date-box"><div class="appointmentlist-date-appendjs"></div></div>
+	<!--one tab bengin-->
+	<div class="appointmentlist-box-table" style="display:block">
+		<div class="WealthPoint_table WealthPoint_table_doctor">
+			<table id="wpTable">
+				<thead class="wpThead">
+					<tr>
+						<th class="wpTh1_three">预约时间</th>
+						<th class="wpTh2_three">患者姓名</th>
+						<th class="wpTh3_three">手机号</th>
+						<th class="wpTh4_three">会诊机构</th>
+						<th class="wpTh5_three">金额</th>
+					</tr>
+				</thead>		
+				<tbody class="wpTbody wpTbody_Bodydoctor" id="tbody">
+
+					<tr>
+						<td>1111</td>
+						<td>1111</td>
+						<td>1111</td>
+						<td>1111</td>
+						<td><a class="wpTbody_Adoctor">1111</a></td>
+					</tr>
+
+				</tbody>						
+			</table>
+		</div>
+	</div>
+	<!--two tab bengin-->
+	<div class="appointmentlist-box-table">
+		<div class="WealthPoint_table WealthPoint_table_doctor">
+			<table id="wpTable">
+				<thead class="wpThead">
+					<tr>
+						<th class="wpTh1_three">预约时间</th>
+						<th class="wpTh2_three">患者姓名</th>
+						<th class="wpTh3_three">手机号</th>
+						<th class="wpTh4_three">会诊机构</th>
+						<th class="wpTh5_three">金额</th>
+					</tr>
+				</thead>		
+				<tbody class="wpTbody wpTbody_Bodydoctor" id="tbody">
+
+					<tr>
+						<td>222</td>
+						<td>1111</td>
+						<td>1111</td>
+						<td>1111</td>
+						<td><a class="wpTbody_Adoctor">1111</a></td>
+					</tr>
+
+				</tbody>						
+			</table>
+		</div>
+	</div>
+	<!--stree tab bengin-->
+	<div class="appointmentlist-box-table">
+		<div class="WealthPoint_table WealthPoint_table_doctor">
+			<table id="wpTable">
+				<thead class="wpThead">
+					<tr>
+						<th class="wpTh1_three">预约时间</th>
+						<th class="wpTh2_three">患者姓名</th>
+						<th class="wpTh3_three">手机号</th>
+						<th class="wpTh4_three">会诊机构</th>
+						<th class="wpTh5_three">金额</th>
+					</tr>
+				</thead>		
+				<tbody class="wpTbody wpTbody_Bodydoctor" id="tbody">
+
+					<tr>
+						<td>333</td>
+						<td>1111</td>
+						<td>1111</td>
+						<td>1111</td>
+						<td><a class="wpTbody_Adoctor">1111</a></td>
+					</tr>
+
+				</tbody>						
+			</table>
+		</div>
+	</div>
+	<!--four tab bengin-->
+	<div class="appointmentlist-box-table">
+		<div class="WealthPoint_table WealthPoint_table_doctor">
+			<table id="wpTable">
+				<thead class="wpThead">
+					<tr>
+						<th class="wpTh1_three">预约时间</th>
+						<th class="wpTh2_three">患者姓名</th>
+						<th class="wpTh3_three">手机号</th>
+						<th class="wpTh4_three">会诊机构</th>
+						<th class="wpTh5_three">金额</th>
+					</tr>
+				</thead>		
+				<tbody class="wpTbody wpTbody_Bodydoctor" id="tbody">
+
+					<tr>
+						<td>444</td>
+						<td>1111</td>
+						<td>1111</td>
+						<td>1111</td>
+						<td><a class="wpTbody_Adoctor">1111</a></td>
+					</tr>
+
+				</tbody>						
+			</table>
+		</div>
+	</div>
+
+	<!--fove tab bengin-->
+	<div class="appointmentlist-box-table">
+		<div class="WealthPoint_table WealthPoint_table_doctor">
+			<table id="wpTable">
+				<thead class="wpThead">
+					<tr>
+						<th class="wpTh1_three">预约时间</th>
+						<th class="wpTh2_three">患者姓名</th>
+						<th class="wpTh3_three">手机号</th>
+						<th class="wpTh4_three">会诊机构</th>
+						<th class="wpTh5_three">金额</th>
+					</tr>
+				</thead>		
+				<tbody class="wpTbody wpTbody_Bodydoctor" id="tbody">
+
+					<tr>
+						<td>555</td>
+						<td>1111</td>
+						<td>1111</td>
+						<td>1111</td>
+						<td><a class="wpTbody_Adoctor">1111</a></td>
+					</tr>
+
+				</tbody>						
+			</table>
+		</div>
+	</div>
+</div>
+
+<script src="jquery.min.js"></script>
+
+<script>
+var huanglingdate = new Date(); 
+var Daytotal = 7; //滑动的天数
+var ymd,datehuangie,weekday, yearie, monthie, dayie;
+var tab = "0";
+
+for (var i = 0; i < Daytotal; ++i) {
+	  GetDateStr(i);
+	  yearie = datehuangie.getFullYear(); 
+	  monthie = datehuangie.getMonth()+1;
+	  dayie = datehuangie.getDate(); 
+	  if (i == tab) {
+		  $(".appointmentlist-date-appendjs").append("<span class=\"active\" id='"+i+"'>"+i+ monthie + "月" + dayie + "日<p>" + weekday + "</p></a></span>");
+
+	  } else {
+		  $(".appointmentlist-date-appendjs").append("<span id='"+i+"'>"+i+ monthie + "月" + dayie + "日<p>" + weekday + "</p></a></span>");
+	  }	  
+	  
+}
+
+function NewDate(str)
+{
+	var date=new Date();
+	date.setUTCFullYear(str[0], str[1]-1, str[2]);
+	date.setUTCHours(0, 0, 0, 0);
+	return date;
+}
+function GetDateStr(AddDayCount) {
+
+	var huanglingdate = new Date();
+	huanglingdate.setDate(huanglingdate.getDate()+AddDayCount);
+	var year = parseInt(huanglingdate.getFullYear());
+	var month = parseInt(huanglingdate.getMonth()+1);
+	var nowDate = parseInt(huanglingdate.getDate());
+	var dayhling = new Array([ year, month, nowDate]); 
+
+	datehuangie = NewDate(dayhling[0]);
+	
+	if(AddDayCount == 0){ 
+		weekday = "今天";
+	}else if(AddDayCount == 1){
+		weekday = "明天";
+	}else{
+		weekday = "星期" + "日一二三四五六".split("")[new Date(datehuangie.getFullYear(), datehuangie.getMonth(), datehuangie.getDate()).getDay()];
+	}
+	  
+    return dayhling;
+}
+
+$(".appointmentlist-date-appendjs span").on("click", function(e){
+	$(this).siblings("span").removeClass("active").end().addClass("active");
+	var indexing = $(this).index("span");
+
+	var indexing = $(".appointmentlist-date-appendjs span").index($(this));
+	$(".appointmentlist-box-table").eq(indexing).siblings(".appointmentlist-box-table").hide().end().show();
+});
+
+
+$('#table-append-body').on("click",".edit-ho",function(){
+	  var getid = $(this).attr("hosid");
+	  $("#edit-id").val(getid);
+	  var rootPath=getRootPath();
+	  $.ajax({
+		   type: "GET",
+		   url: rootPath+"/hos/Scheduling/get_shift_data",
+		   data: "id="+getid,
+		   success: function(json){
+				 var dataObj=json.data[0];
+				 
+				 $("#editModal-desc").val(dataObj.desc); 
+				 
+			var editstarttime = (parseInt(dataObj.start_time%60) < 10)?("0"+parseInt(dataObj.start_time%60)):(parseInt(dataObj.start_time%60));
+				 var editendtime = (parseInt(dataObj.end_time%60) < 10)?("0"+parseInt(dataObj.end_time%60)):(parseInt(dataObj.end_time%60));
+				 
+				 $("#editModal-startime").val(parseInt(dataObj.start_time/60)+":"+editstarttime); 
+				 $("#editModal-endtime").val(parseInt(dataObj.end_time/60)+":"+editendtime);
+				 if(dataObj.status == 1){
+					$(".qiyong").attr("checked",true)
+				 }else if(dataObj.status == 0){
+					$(".jinyong").attr("checked",true)
+				 }else{
+					$(".qiyong").attr("checked",false)
+				 }
+		   }
+		});
+	  $('#editModal').modal();
+});
+</script>
+</body>
+</html>
